@@ -1,0 +1,2 @@
+title,authors,year,type,venue,abstract,keywords,doi,publisher_url,repository_url,fulltext_url,dataset_url,status
+"REPLACE WITH VERIFIED PUBLICATION TITLE","Mrinmoy Chakraborty; add all co-authors exactly as published","YYYY","Conference paper","Conference/proceedings name","Brief factual abstract or leave blank","limestone; mineral exploration; mining","DOI if verified, otherwise blank","https://publisher.example/article","https://zenodo.org/record/REPLACE","https://example.org/permitted-author-manuscript.pdf","","Published — metadata to verify"

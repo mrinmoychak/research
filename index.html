@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mrinmoy Chakraborty | Research Publications</title>
+<meta name="description" content="Research publications, conference papers, technical reports and supporting research materials by Mrinmoy Chakraborty.">
+<style>
+:root{--ink:#172235;--muted:#5d6878;--line:#dce3eb;--paper:#fff;--wash:#f4f7fb;--accent:#165d8f;--accent2:#0d3e62}
+*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#123653,#17658a);color:#fff;padding:54px 20px 44px}
+.wrap{max-width:1040px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:700;opacity:.85}
+h1{font-size:clamp(2rem,5vw,3.1rem);line-height:1.1;margin:.55rem 0}header p{max-width:760px;color:#e4f0f8}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.links a{color:white;border:1px solid #9bbfd3;border-radius:999px;padding:7px 13px;text-decoration:none;font-size:.92rem}
+main{padding:28px 20px 60px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;margin:0 0 20px;box-shadow:0 3px 14px #142c4208}
+h2{font-size:1.35rem;margin:0 0 12px}h3{font-size:1.08rem;margin:0 0 6px}
+.muted{color:var(--muted)}.notice{background:#fff8e7;border-left:4px solid #c28a18;padding:12px 15px;border-radius:6px}
+.filters{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin:14px 0}
+input,select{width:100%;padding:11px 12px;border:1px solid #bdc8d5;border-radius:9px;background:#fff;font:inherit}
+.publication{border-top:1px solid var(--line);padding:17px 0}.publication:first-child{border-top:0}
+.meta{font-size:.9rem;color:var(--muted);margin:4px 0 8px}.tag{display:inline-block;font-size:.78rem;background:#e8f1f8;color:#174d70;padding:2px 8px;border-radius:999px;margin:0 5px 5px 0}
+.publinks a{color:var(--accent);margin-right:13px;text-decoration:none;font-weight:600}.publinks a:hover{text-decoration:underline}
+footer{color:var(--muted);font-size:.9rem;text-align:center;padding:20px}
+@media(max-width:620px){.filters{grid-template-columns:1fr}header{padding-top:38px}.panel{padding:17px}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<div class="eyebrow">Research portfolio</div>
+<h1>Mrinmoy Chakraborty</h1>
+<p>Geoscience · Mineral Exploration · Mining Policy & Regulation · Environment, ESG & Sustainability</p>
+<p>A curated catalogue of journal articles, conference papers, technical publications, datasets and related research outputs. Publication details and access links should be verified against the original publisher or proceedings.</p>
+<div class="links">
+<a href="https://orcid.org/" id="orcid-link">ORCID profile — add your link</a>
+<a href="https://scholar.google.com/" id="scholar-link">Google Scholar — add your profile</a>
+<a href="https://github.com/" id="github-link">GitHub profile</a>
+</div>
+</div>
+</header>
+<main class="wrap">
+<section class="panel">
+<h2>About this catalogue</h2>
+<p>This website is a discovery layer for research outputs. The publisher's version and original DOI remain the authoritative publication record. Full-text files are linked only where sharing is authorised.</p>
+<div class="notice"><strong>Before publishing:</strong> replace example records with verified publications. Do not upload publisher PDFs unless your publishing agreement or open licence permits it. Do not invent or infer ISBNs, DOIs, indexing status or citation counts.</div>
+</section>
+<section class="panel">
+<h2>Publications</h2>
+<p class="muted">Search by title, subject, year, publication type or identifier.</p>
+<div class="filters">
+<input id="search" type="search" placeholder="Search titles, keywords, authors, DOI…" aria-label="Search publications">
+<select id="typeFilter" aria-label="Filter by publication type">
+<option value="">All publication types</option>
+<option>Journal article</option><option>Conference paper</option><option>Book chapter</option><option>Technical report</option><option>Dataset</option><option>Presentation</option>
+</select>
+</div>
+<div id="publications"><p class="muted">Loading catalogue…</p></div>
+</section>
+<section class="panel">
+<h2>Research materials</h2>
+<p>Where applicable, supporting datasets, reproducible calculations, figures and code may be provided in linked repositories. Each item should include a clear description, provenance, version and licence appropriate to the material.</p>
+<p><a href="https://zenodo.org/" target="_blank" rel="noopener">Zenodo</a> · <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a> · <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></p>
+</section>
+</main>
+<footer><div class="wrap">Research catalogue maintained by the author. Please cite the original published version when available.</div></footer>
+<script>
+const rowsUrl = "publications.csv";
+let rows = [];
+function esc(s){return String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function link(url,label){if(!url||!/^https?:\/\//i.test(url))return "";return `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`;}
+function render(){
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ const typ=document.getElementById("typeFilter").value;
+ const found=rows.filter(r=>(!typ||r.type===typ)&&Object.values(r).join(" ").toLowerCase().includes(q));
+ const root=document.getElementById("publications");
+ if(!found.length){root.innerHTML='<p class="muted">No matching publications. Add verified records to publications.csv.</p>';return;}
+ root.innerHTML=found.map(r=>`<article class="publication">
+ <h3>${esc(r.title||"Untitled record")}</h3>
+ <div class="meta">${esc(r.authors)}${r.year?' · '+esc(r.year):''}${r.venue?' · '+esc(r.venue):''}</div>
+ <div>${r.type?`<span class="tag">${esc(r.type)}</span>`:""}${r.status?`<span class="tag">${esc(r.status)}</span>`:""}</div>
+ ${r.abstract?`<p>${esc(r.abstract)}</p>`:""}
+ ${r.keywords?`<p class="muted"><strong>Keywords:</strong> ${esc(r.keywords)}</p>`:""}
+ ${r.doi?`<p class="meta"><strong>DOI:</strong> ${esc(r.doi)}</p>`:""}
+ <div class="publinks">${link(r.publisher_url,"Publisher / proceedings")}${link(r.repository_url,"Open repository record")}${link(r.fulltext_url,"Authorised full text")}${link(r.dataset_url,"Dataset / supplementary material")}</div>
+ </article>`).join("");
+}
+fetch(rowsUrl).then(r=>{if(!r.ok)throw Error("CSV not found");return r.text()}).then(t=>{
+ const lines=t.trim().split(/\r?\n/);const parseLine=line=>{let a=[],s="",quoted=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&quoted&&line[i+1]==='"'){s+='"';i++;}else if(c==='"')quoted=!quoted;else if(c===','&&!quoted){a.push(s);s="";}else s+=c;}a.push(s);return a;};
+ const headers=parseLine(lines.shift());rows=lines.filter(Boolean).map(l=>{const v=parseLine(l),o={};headers.forEach((h,i)=>o[h]=v[i]||"");return o;});render();
+}).catch(()=>{document.getElementById("publications").innerHTML='<p class="muted">Could not load publications.csv. Ensure it is in the same folder as index.html.</p>';});
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("typeFilter").addEventListener("change",render);
+</script>
+</body>
+</html>

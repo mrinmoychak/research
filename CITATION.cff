@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this research catalogue or its original research materials, cite the relevant underlying publication or dataset."
+title: "Research Publications Catalogue — Mrinmoy Chakraborty"
+authors:
+  - family-names: Chakraborty
+    given-names: Mrinmoy
+type: software
+abstract: "A curated catalogue of verified research publications and links to their authoritative publication records."
+repository-code: "https://github.com/YOUR-GITHUB-USERNAME/YOUR-GITHUB-USERNAME.github.io"
+url: "https://YOUR-GITHUB-USERNAME.github.io"
